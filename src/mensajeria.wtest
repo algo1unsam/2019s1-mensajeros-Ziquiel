@@ -3,8 +3,8 @@ import lugares.*
 
 test "Si neo es empleado, Hay un mensajero que puede enviar el paquete" {
 	mensajeria.contratar(neo)
-	paquete.pago(laMatrix)
-	paquete.destino(laMatrix,neo)
+	paquete.pago(neo)
+	neo.puedeEntregar(laMatrix)
 	assert.that(mensajeria.mensajeros().contains(neo))
 }
 test "Si tengo contratado un empleado, lo puedo despedir"{
@@ -26,7 +26,7 @@ test "Probamos si la mensajeria es grande"{
 test "chequea si el primer mensajero de la mensajeria puede entregar a la Matrix"{
 	mensajeria.contratar(neo)
 	mensajeria.contratar(chuckNorris)
-	paquete.pago(laMatrix)
+	paquete.pago(neo)
 	assert.equals(true,mensajeria.primerEntrega(laMatrix))
 }
 test "probamos si el metodo devuelve el peso del ultimo mensajero"{

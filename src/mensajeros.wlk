@@ -20,17 +20,17 @@ object mensajeria {
 
 	method mensGrande() = (mensajeria.size() > 2)
 
-	method primerEntrega(lugar) = lugar.dejaPasar(mensajeria.asList().first())
+	method primerEntrega(lugar) = mensajeria.asList().first().puedeEntregar(lugar)
 
 	method ultimoPeso() = mensajeria.asList().last().peso()
 
 }
 
 object roberto {
-
+	var property pagado = 0
 	var property peso = bici.peso() + 90
 	var property llamada = 0
-
+	method puedeEntregar (lugar)= (pagado==1 and lugar.dejaPasar(self)) 
 	method camion() {
 		peso = camion.peso() + 90
 	}
@@ -38,26 +38,26 @@ object roberto {
 }
 
 object chuckNorris {
-
+	var property pagado = 0
 	var property peso = 900
 	var property llamada = 1
-
+	method puedeEntregar (lugar)= (pagado==1 and lugar.dejaPasar(self))
 }
 
 object neo {
-
+	var property pagado = 0
 	var property peso = 0
 	var property llamada = 1
-
+	method puedeEntregar (lugar)= (pagado==1 and lugar.dejaPasar(self))
 }
 
 object paquete {
 
-	method pago(lugar) {
-		lugar.pagado(1)
+	method pago(mensajero) {
+		mensajero.pagado(1)
 	}
 
-	method destino(lugar, mensajero) = lugar.dejaPasar(mensajero)
+	method destino(lugar,mensajero) = mensajero.puedeEntregar(lugar)
 
 }
 
